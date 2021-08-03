@@ -10,12 +10,9 @@ import com.example.shoppingapp.repositories.ShoppingAppDatabase
 
 class ProductDetailsActivity : AppCompatActivity() {
 
-    lateinit var presenter: ProductDetailsContract.Presenter
-    lateinit var favoritesProductsDAO: FavoritesProductsDAO
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        favoritesProductsDAO = ShoppingAppDatabase.getDb(this).favoritesProductsDAO()
-        presenter = ProductDetailsPresenter(ProductDetailsView(this), ShoppingAppModel(favoritesProductsDAO))
+        val favoritesProductsDAO: FavoritesProductsDAO = ShoppingAppDatabase.getDb(this).favoritesProductsDAO()
+        ProductDetailsPresenter(ProductDetailsView(this), ShoppingAppModel(favoritesProductsDAO))
     }
 }
