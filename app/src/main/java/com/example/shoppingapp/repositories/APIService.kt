@@ -20,7 +20,9 @@ class APIService {
         var data = emptyList<Products>()
         val response = getRetrofit().create(APIContract::class.java).fetchAllProducts()
         if (response.isSuccessful) {
-            data = response.body()!!
+            response.body()?.let {
+                data = it
+            }
         } else {
             Log.e("Fetch Error", "Something Went Wrong")
         }

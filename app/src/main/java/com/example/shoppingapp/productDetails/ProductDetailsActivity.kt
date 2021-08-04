@@ -5,13 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.shoppingapp.model.ShoppingAppModel
 import com.example.shoppingapp.productDetails.presenter.ProductDetailsPresenter
 import com.example.shoppingapp.productDetails.view.ProductDetailsView
+import com.example.shoppingapp.repositories.FavoritesProductsDAO
+import com.example.shoppingapp.repositories.ShoppingAppDatabase
 
 class ProductDetailsActivity : AppCompatActivity() {
 
-    lateinit var presenter: ProductDetailsContract.Presenter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = ProductDetailsPresenter(ProductDetailsView(this), ShoppingAppModel())
+        val favoritesProductsDAO: FavoritesProductsDAO = ShoppingAppDatabase.getDb(this).favoritesProductsDAO()
+        ProductDetailsPresenter(ProductDetailsView(this), ShoppingAppModel(favoritesProductsDAO))
     }
 }
