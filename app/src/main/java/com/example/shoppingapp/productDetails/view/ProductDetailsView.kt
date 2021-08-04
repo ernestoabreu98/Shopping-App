@@ -21,7 +21,8 @@ class ProductDetailsView(private val activity: Activity) : ProductDetailsContrac
         val product: Products = activity.intent.extras?.get(R.id.product.toString()) as Products
         Picasso.get().load(product.image).into(binding.productDetailImage)
         binding.productTitle.text = product.title
-        binding.productPrice.text = "Price: ${product.price}"
+        binding.productPrice.text =
+            "${activity.resources.getString(R.string.productDetailsPrice)} ${product.price}"
         binding.productDescription.text = product.description
     }
 }

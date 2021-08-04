@@ -4,7 +4,6 @@ interface ProductDetailsContract {
     interface Presenter {
 
     }
-
     interface View {
 
         fun setProductDetailsContent()

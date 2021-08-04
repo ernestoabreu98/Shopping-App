@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val favoritesProductsDAO: FavoritesProductsDAO = ShoppingAppDatabase.getDb(this).favoritesProductsDAO()
-        ProductListPresenter(ProductsListView(this), ShoppingAppModel(favoritesProductsDAO))
+        ProductListPresenter(ProductsListView(this), ShoppingAppModel(ShoppingAppDatabase.getDb(this).favoritesProductsDAO()))
     }
 }
