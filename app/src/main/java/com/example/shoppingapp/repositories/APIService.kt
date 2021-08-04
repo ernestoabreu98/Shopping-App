@@ -2,8 +2,11 @@ package com.example.shoppingapp.repositories
 
 import android.util.Log
 import com.example.shoppingapp.model.Products
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
+
 
 class APIService {
     companion object {
@@ -11,7 +14,12 @@ class APIService {
     }
 
     private fun getRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL)
+        val okHttpClient = OkHttpClient.Builder()
+            .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
+            .build()
+        return Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }

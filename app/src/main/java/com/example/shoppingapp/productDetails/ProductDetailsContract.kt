@@ -7,5 +7,6 @@ interface ProductDetailsContract {
 
     interface View {
 
+        fun setProductDetailsContent()
     }
 }

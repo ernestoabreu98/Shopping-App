@@ -2,6 +2,7 @@ package com.example.shoppingapp.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 data class Products (
@@ -11,4 +12,4 @@ data class Products (
     @Json(name = "description") val description: String,
     @Json(name = "category") val category: String,
     @Json(name = "image") val image: String
-)
+): Serializable

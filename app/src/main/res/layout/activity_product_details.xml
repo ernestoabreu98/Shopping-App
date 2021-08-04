@@ -6,4 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".productDetails.ProductDetailsActivity">
 
+    <ImageView
+        android:id="@+id/productDetailImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/productImageHeight"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.169"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/productPrice"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productDetailImage"
+        app:layout_constraintVertical_bias="0.232" />
+
+    <TextView
+        android:id="@+id/productDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productPrice"
+        app:layout_constraintVertical_bias="0.132" />
+
+    <TextView
+        android:id="@+id/productTitle"
+        android:layout_width="@dimen/productTitleWidth"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@id/productPrice"
+        app:layout_constraintEnd_toStartOf="@id/favoriteImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productDetailImage"
+        app:layout_constraintVertical_bias="0.621" />
+
+    <ImageView
+        android:id="@+id/favoriteImage"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintBottom_toBottomOf="@id/productTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/productTitle"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/white_star" />
 </androidx.constraintlayout.widget.ConstraintLayout>
