@@ -9,5 +9,7 @@ interface ProductListContract {
 
     interface View {
         fun showProductList(data: List<Products>)
+        fun showProgressBar()
+        fun hideProgressBar()
     }
 }

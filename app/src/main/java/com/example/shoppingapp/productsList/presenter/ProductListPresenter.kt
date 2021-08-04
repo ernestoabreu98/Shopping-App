@@ -12,7 +12,9 @@ class ProductListPresenter(private val view: ProductsListView, private val model
 
     init {
         CoroutineScope(Dispatchers.Main).launch {
+            view.showProgressBar()
             view.showProductList(model.getAllProducts())
+            view.hideProgressBar()
         }
     }
 }

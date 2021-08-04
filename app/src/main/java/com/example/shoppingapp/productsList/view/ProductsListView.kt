@@ -19,11 +19,17 @@ class ProductsListView(private val activity: Activity) : ProductListContract.Vie
         activity.setContentView(binding.root)
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     override fun showProductList(data: List<Products>) {
-        binding.progressBar.setTransitionVisibility(View.GONE)
         adapter = ProductsAdapter(data)
         binding.productsRecyclerView.layoutManager = GridLayoutManager(activity, 2)
         binding.productsRecyclerView.adapter = adapter
+    }
+
+    override fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
     }
 }
