@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso
 class ProductDetailsView(private val activity: Activity) : ProductDetailsContract.View {
 
     private val binding = ActivityProductDetailsBinding.inflate(activity.layoutInflater)
+    private val product: Products = activity.intent.extras?.get(R.id.product.toString()) as Products
 
     init {
         activity.setContentView(binding.root)
@@ -18,11 +19,28 @@ class ProductDetailsView(private val activity: Activity) : ProductDetailsContrac
 
     @SuppressLint("SetTextI18n")
     override fun setProductDetailsContent() {
-        val product: Products = activity.intent.extras?.get(R.id.product.toString()) as Products
         Picasso.get().load(product.image).into(binding.productDetailImage)
         binding.productTitle.text = product.title
         binding.productPrice.text =
             "${activity.resources.getString(R.string.productDetailsPrice)} ${product.price}"
         binding.productDescription.text = product.description
+    }
+
+    override fun onFavoriteImageViewPressed(onClick: (product: Products) -> Unit) {
+        binding.favoriteImage.setOnClickListener {
+            onClick.invoke(product)
+        }
+    }
+
+    override fun setFavoriteValue(isFavorite: Boolean) {
+        if (isFavorite) {
+            binding.favoriteImage.setImageResource(R.drawable.gold_star)
+        } else {
+            binding.favoriteImage.setImageResource(R.drawable.white_star)
+        }
+    }
+
+    override fun getProductSelected(): Int {
+        return product.id
     }
 }

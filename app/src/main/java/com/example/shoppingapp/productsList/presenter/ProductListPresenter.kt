@@ -1,8 +1,10 @@
 package com.example.shoppingapp.productsList.presenter
 
 import com.example.shoppingapp.model.ModelContract
+import com.example.shoppingapp.model.Products
 import com.example.shoppingapp.productsList.ProductListContract
 import com.example.shoppingapp.productsList.view.ProductsListView
+import com.example.shoppingapp.repositories.FavoritesProducts
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [FavoritesProducts::class], version = 1)
+@Database(entities = [FavoritesProducts::class], version = 4)
 abstract class ShoppingAppDatabase : RoomDatabase() {
     abstract fun favoritesProductsDAO(): FavoritesProductsDAO
 

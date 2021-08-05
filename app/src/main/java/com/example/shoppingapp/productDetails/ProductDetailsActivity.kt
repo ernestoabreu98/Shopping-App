@@ -13,7 +13,9 @@ class ProductDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ProductDetailsPresenter(
             ProductDetailsView(this),
-            ShoppingAppModel(ShoppingAppDatabase.getDb(this).favoritesProductsDAO())
+            ShoppingAppModel(
+                ShoppingAppDatabase.getDb(this).favoritesProductsDAO()
+            )
         )
     }
 }
