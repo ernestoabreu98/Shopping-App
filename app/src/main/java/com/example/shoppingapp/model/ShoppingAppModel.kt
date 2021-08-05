@@ -22,7 +22,6 @@ class ShoppingAppModel(
     }
 
     override suspend fun saveFavorite(product: Products) {
-
         dao.saveFavorite(
             FavoritesProducts(
                 product.id,
