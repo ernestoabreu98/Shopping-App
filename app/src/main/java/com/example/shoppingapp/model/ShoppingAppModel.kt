@@ -17,8 +17,8 @@ class ShoppingAppModel(
     }
 
     override suspend fun checkIsFavorite(id: Int): Boolean {
-        val response = dao.getFavoriteById(id)
-        return response != null
+        val response = dao.isFavorite(id)
+        return response > 0
     }
 
     override suspend fun saveFavorite(product: Products) {
