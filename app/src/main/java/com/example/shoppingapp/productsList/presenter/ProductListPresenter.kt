@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ProductListPresenter(private val view: ProductsListView, private val model: ModelContract) :
+class ProductListPresenter(private val view: ProductListContract.View, private val model: ModelContract) :
     ProductListContract.Presenter {
 
     init {
