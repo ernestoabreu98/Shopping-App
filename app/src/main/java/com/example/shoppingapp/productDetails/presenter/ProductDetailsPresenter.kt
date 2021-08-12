@@ -5,7 +5,6 @@ import com.example.shoppingapp.productDetails.ProductDetailsContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ProductDetailsPresenter(
     private val view: ProductDetailsContract.View,
@@ -14,29 +13,24 @@ class ProductDetailsPresenter(
     ProductDetailsContract.Presenter {
     init {
         view.setProductDetailsContent()
-        CoroutineScope(Dispatchers.IO).launch {
-            checkIsFavorite(view.getProductSelected())
+        CoroutineScope(Dispatchers.Main).launch {
+            if (model.checkIsFavorite(view.getProductSelected())) {
+                view.showProductAsFavorite()
+            } else {
+                view.hideProductAsFavorite()
+            }
         }
 
         view.onFavoriteImageViewPressed {
-            CoroutineScope(Dispatchers.IO).launch {
+            CoroutineScope(Dispatchers.Main).launch {
                 if (model.checkIsFavorite(it.id)) {
                     model.deleteFavorite(it.id)
-                    withContext(Dispatchers.Main) {
-                        view.setFavoriteValue(false)
-                    }
+                    view.hideProductAsFavorite()
                 } else {
                     model.saveFavorite(it)
-                    checkIsFavorite(it.id)
+                    view.showProductAsFavorite()
                 }
             }
-        }
-    }
-
-    private suspend fun checkIsFavorite(id: Int) {
-        val isFavorite = model.checkIsFavorite(id)
-        withContext(Dispatchers.Main) {
-            view.setFavoriteValue(isFavorite)
         }
     }
 }

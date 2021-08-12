@@ -17,27 +17,32 @@ class ShoppingAppModel(
     }
 
     override suspend fun checkIsFavorite(id: Int): Boolean {
-        val response = dao.isFavorite(id)
-        return response > 0
+        return withContext(Dispatchers.IO) {
+            dao.isFavorite(id) > 0
+        }
     }
 
     override suspend fun saveFavorite(product: Products) {
-        dao.saveFavorite(
-            FavoritesProducts(
-                product.id,
-                product.title,
-                product.category,
-                product.description,
-                product.price,
-                product.image,
-                true
+        withContext(Dispatchers.IO) {
+            dao.saveFavorite(
+                FavoritesProducts(
+                    product.id,
+                    product.title,
+                    product.category,
+                    product.description,
+                    product.price,
+                    product.image,
+                    true
+                )
             )
-        )
+        }
     }
 
     override suspend fun deleteFavorite(productId: Int) {
-        val productToDelete = dao.getFavoriteById(productId)
-        productToDelete?.let { dao.deleteFavorite(it) }
+        withContext(Dispatchers.IO) {
+            val productToDelete = dao.getFavoriteById(productId)
+            productToDelete?.let { dao.deleteFavorite(it) }
+        }
     }
 
     override suspend fun getAllProducts(): List<Products> {

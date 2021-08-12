@@ -32,15 +32,15 @@ class ProductDetailsView(private val activity: Activity) : ProductDetailsContrac
         }
     }
 
-    override fun setFavoriteValue(isFavorite: Boolean) {
-        if (isFavorite) {
-            binding.favoriteImage.setImageResource(R.drawable.gold_star)
-        } else {
-            binding.favoriteImage.setImageResource(R.drawable.white_star)
-        }
-    }
-
     override fun getProductSelected(): Int {
         return product.id
+    }
+
+    override fun showProductAsFavorite() {
+        binding.favoriteImage.setImageResource(R.drawable.gold_star)
+    }
+
+    override fun hideProductAsFavorite() {
+        binding.favoriteImage.setImageResource(R.drawable.white_star)
     }
 }
